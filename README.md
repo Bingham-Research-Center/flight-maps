@@ -25,10 +25,16 @@ python scripts/run_all.py 3f99ca78 --example  # stamps EXAMPLE OUTPUT watermark
 
 Outputs land in `outputs/` (gitignored). Reference renders of the bundled demo flight live in [`examples/3f99ca78/`](examples/3f99ca78/) and are previewed below.
 
-- `static_<id>.png` — cartopy publication map.
-- `interactive_<id>.html` — Plotly map + altitude profile.
-- `kepler_<id>/{track.csv,config.json}` — drag into <https://kepler.gl/demo>.
-- `art_topo_<id>.png` — minimalist topographic line-art.
+| Artefact | What it shows | Dimensions used |
+|---|---|---|
+| `static_<id>.png` | Cartopy publication map; track coloured by altitude | lat, lon, alt |
+| `art_topo_<id>.png` | Minimalist topographic line-art | lat, lon |
+| `track_3d_<id>.png` | True 3D ribbon with ground-shadow projection | lat, lon, alt, speed |
+| `dashboard_<id>.png` | Composite: track + altitude/speed time-series + heading rose | all + metadata |
+| `heading_rose_<id>.png` | Polar wind-rose of headings, stacked by altitude band | heading, alt |
+| `time_track_<id>.png` | Track recoloured by elapsed time, arrow heads for direction | lat, lon, time |
+| `interactive_<id>.html` | Plotly map + altitude profile (browser) | lat, lon, alt, speed, hdg, time |
+| `kepler_<id>/` | track.csv + config.json for <https://kepler.gl/demo> | all |
 
 ## Example output
 
@@ -37,6 +43,22 @@ Outputs land in `outputs/` (gitignored). Reference renders of the bundled demo f
 ### Static cartopy map
 
 ![Example static map](examples/3f99ca78/static_3f99ca78.png)
+
+### 3D track + ground shadow
+
+![Example 3D track](examples/3f99ca78/track_3d_3f99ca78.png)
+
+### Telemetry dashboard
+
+![Example dashboard](examples/3f99ca78/dashboard_3f99ca78.png)
+
+### Time-coloured track (survey order)
+
+![Example time-coloured track](examples/3f99ca78/time_track_3f99ca78.png)
+
+### Heading rose by altitude band
+
+![Example heading rose](examples/3f99ca78/heading_rose_3f99ca78.png)
 
 ### Topographic line-art
 

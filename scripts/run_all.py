@@ -6,7 +6,16 @@ from pathlib import Path
 
 from flight_maps import metadata as md_mod
 from flight_maps.parsers import fr24
-from flight_maps.viz import art_topo, interactive, kepler_export, static_map
+from flight_maps.viz import (
+    art_topo,
+    dashboard,
+    heading_rose,
+    interactive,
+    kepler_export,
+    static_map,
+    time_track,
+    track_3d,
+)
 
 REPO = Path(__file__).resolve().parent.parent
 
@@ -35,7 +44,11 @@ def run(
     interactive.render(track, out_dir / f"interactive_{flight_id}.html", is_example=is_example)
     kepler_export.render(track, out_dir / f"kepler_{flight_id}", is_example=is_example)
     art_topo.render(track, out_dir / f"art_topo_{flight_id}.png", is_example=is_example)
-    print(f"wrote 4 artefacts under {out_dir}/")
+    track_3d.render(track, out_dir / f"track_3d_{flight_id}.png", is_example=is_example)
+    dashboard.render(track, out_dir / f"dashboard_{flight_id}.png", is_example=is_example)
+    heading_rose.render(track, out_dir / f"heading_rose_{flight_id}.png", is_example=is_example)
+    time_track.render(track, out_dir / f"time_track_{flight_id}.png", is_example=is_example)
+    print(f"wrote 8 artefacts under {out_dir}/")
 
 
 def main() -> None:

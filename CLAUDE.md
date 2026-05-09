@@ -26,6 +26,11 @@ pip install -e .                  # first run only
 | Plotly interactive HTML | `src/flight_maps/viz/interactive.py` |
 | Kepler.gl export (CSV+config) | `src/flight_maps/viz/kepler_export.py` |
 | Topographic line-art | `src/flight_maps/viz/art_topo.py` |
+| 3D track + ground shadow | `src/flight_maps/viz/track_3d.py` |
+| Telemetry dashboard composite | `src/flight_maps/viz/dashboard.py` |
+| Heading rose (altitude-banded) | `src/flight_maps/viz/heading_rose.py` |
+| Time-coloured 2D track | `src/flight_maps/viz/time_track.py` |
+| Watermark helper | `src/flight_maps/viz/_watermark.py` |
 | End-to-end runner | `scripts/run_all.py` |
 | Tests | `tests/test_parsers.py` |
 | FR24 schema doc | `test_examples/fr24/SCHEMA.md` |
@@ -64,4 +69,4 @@ pip install -e .                  # first run only
 
 - `outputs/` (gitignored): scratch dir for analysis runs.
 - `examples/3f99ca78/` (committed): reference renders of the demo flight, watermarked `EXAMPLE OUTPUT` via `--example`. Used in README. Regenerate with the `--example` invocation above.
-- Per output: `static_<id>.png`, `interactive_<id>.html`, `kepler_<id>/{track.csv,config.json,README.md}`, `art_topo_<id>.png`.
+- Per output: `static_<id>.png`, `art_topo_<id>.png`, `track_3d_<id>.png`, `dashboard_<id>.png`, `heading_rose_<id>.png`, `time_track_<id>.png`, `interactive_<id>.html`, `kepler_<id>/{track.csv,config.json,README.md}`.

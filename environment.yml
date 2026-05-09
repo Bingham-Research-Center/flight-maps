@@ -1,0 +1,17 @@
+name: flight-maps
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - cartopy
+  - matplotlib
+  - numpy
+  - pandas
+  - lxml
+  - plotly
+  - python-kaleido
+  - pyyaml
+  - pytest
+  - pip
+  - pip:
+      - contextily

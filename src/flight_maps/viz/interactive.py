@@ -6,9 +6,10 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 from flight_maps.canonical import FlightTrack
+from flight_maps.viz._watermark import HTML_BANNER
 
 
-def render(track: FlightTrack, out_path: str | Path) -> Path:
+def render(track: FlightTrack, out_path: str | Path, *, is_example: bool = False) -> Path:
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -66,4 +67,8 @@ def render(track: FlightTrack, out_path: str | Path) -> Path:
     fig.update_xaxes(title_text="UTC", row=2, col=1)
 
     fig.write_html(out_path, include_plotlyjs="cdn")
+    if is_example:
+        html = out_path.read_text()
+        html = html.replace("<body>", f"<body>{HTML_BANNER}", 1)
+        out_path.write_text(html)
     return out_path

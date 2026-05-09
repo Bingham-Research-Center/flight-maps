@@ -11,7 +11,13 @@ from flight_maps.viz import art_topo, interactive, kepler_export, static_map
 REPO = Path(__file__).resolve().parent.parent
 
 
-def run(flight_id: str, *, source_dir: Path | None = None, out_dir: Path | None = None) -> None:
+def run(
+    flight_id: str,
+    *,
+    source_dir: Path | None = None,
+    out_dir: Path | None = None,
+    is_example: bool = False,
+) -> None:
     source_dir = source_dir or (REPO / "test_examples/fr24")
     out_dir = out_dir or (REPO / "outputs")
 
@@ -25,10 +31,10 @@ def run(flight_id: str, *, source_dir: Path | None = None, out_dir: Path | None 
 
     print(f"parsed {flight_id}: {track.callsign}, {len(track.positions)} positions")
 
-    static_map.render(track, out_dir / f"static_{flight_id}.png")
-    interactive.render(track, out_dir / f"interactive_{flight_id}.html")
-    kepler_export.render(track, out_dir / f"kepler_{flight_id}")
-    art_topo.render(track, out_dir / f"art_topo_{flight_id}.png")
+    static_map.render(track, out_dir / f"static_{flight_id}.png", is_example=is_example)
+    interactive.render(track, out_dir / f"interactive_{flight_id}.html", is_example=is_example)
+    kepler_export.render(track, out_dir / f"kepler_{flight_id}", is_example=is_example)
+    art_topo.render(track, out_dir / f"art_topo_{flight_id}.png", is_example=is_example)
     print(f"wrote 4 artefacts under {out_dir}/")
 
 
@@ -37,8 +43,18 @@ def main() -> None:
     ap.add_argument("flight_id", help="Stem of the CSV/KML files (e.g. 3f99ca78)")
     ap.add_argument("--source-dir", type=Path, default=None)
     ap.add_argument("--out-dir", type=Path, default=None)
+    ap.add_argument(
+        "--example",
+        action="store_true",
+        help="Stamp outputs as EXAMPLE (committed reference renders, not analysis).",
+    )
     args = ap.parse_args()
-    run(args.flight_id, source_dir=args.source_dir, out_dir=args.out_dir)
+    run(
+        args.flight_id,
+        source_dir=args.source_dir,
+        out_dir=args.out_dir,
+        is_example=args.example,
+    )
 
 
 if __name__ == "__main__":

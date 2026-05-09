@@ -19,15 +19,30 @@ mamba activate flight-maps
 pip install -e .
 
 pytest -q
-python scripts/run_all.py 3f99ca78
+python scripts/run_all.py 3f99ca78          # for analysis: clean renders
+python scripts/run_all.py 3f99ca78 --example  # stamps EXAMPLE OUTPUT watermark
 ```
 
-Outputs land in `outputs/`:
+Outputs land in `outputs/` (gitignored). Reference renders of the bundled demo flight live in [`examples/3f99ca78/`](examples/3f99ca78/) and are previewed below.
 
-- `static_3f99ca78.png` — cartopy publication map.
-- `interactive_3f99ca78.html` — Plotly map + altitude profile.
-- `kepler_3f99ca78/{track.csv,config.json}` — drag into <https://kepler.gl/demo>.
-- `art_topo_3f99ca78.png` — minimalist topographic line-art.
+- `static_<id>.png` — cartopy publication map.
+- `interactive_<id>.html` — Plotly map + altitude profile.
+- `kepler_<id>/{track.csv,config.json}` — drag into <https://kepler.gl/demo>.
+- `art_topo_<id>.png` — minimalist topographic line-art.
+
+## Example output
+
+> The renders below carry a large red **EXAMPLE OUTPUT** watermark on purpose — they are scaffolding artefacts of the bundled demo flight (`3f99ca78` — N91MG, KVEL→KVEL, 2026-05-08), not analytical results. Real analysis runs without `--example` and produces clean images.
+
+### Static cartopy map
+
+![Example static map](examples/3f99ca78/static_3f99ca78.png)
+
+### Topographic line-art
+
+![Example topographic line-art](examples/3f99ca78/art_topo_3f99ca78.png)
+
+The Plotly interactive HTML and Kepler.gl export sit alongside in [`examples/3f99ca78/`](examples/3f99ca78/).
 
 ## Adding a new flight
 

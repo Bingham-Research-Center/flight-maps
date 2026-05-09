@@ -7,7 +7,7 @@ from pathlib import Path
 from flight_maps.canonical import FlightTrack
 
 
-def render(track: FlightTrack, out_dir: str | Path) -> Path:
+def render(track: FlightTrack, out_dir: str | Path, *, is_example: bool = False) -> Path:
     """Emit track.csv + config.json for kepler.gl/demo (drag both onto the page)."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -54,8 +54,13 @@ def render(track: FlightTrack, out_dir: str | Path) -> Path:
     cfg_path.write_text(json.dumps(config, indent=2))
 
     readme = out_dir / "README.md"
+    banner = (
+        "> **EXAMPLE OUTPUT** — scaffolding render of the bundled demo flight, not for analysis.\n\n"
+        if is_example
+        else ""
+    )
     readme.write_text(
-        "# Kepler.gl export\n\n"
+        f"{banner}# Kepler.gl export\n\n"
         "1. Open <https://kepler.gl/demo>.\n"
         "2. Drag `track.csv` onto the map.\n"
         "3. Open the menu → Load map config → drag `config.json`.\n"

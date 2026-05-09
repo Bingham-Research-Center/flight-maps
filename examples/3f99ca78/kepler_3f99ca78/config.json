@@ -1,0 +1,45 @@
+{
+  "version": "v1",
+  "config": {
+    "visState": {
+      "layers": [
+        {
+          "id": "track",
+          "type": "trip",
+          "config": {
+            "dataId": "track",
+            "label": "N91MG track",
+            "color": [
+              255,
+              153,
+              31
+            ],
+            "columns": {
+              "lat": "lat",
+              "lng": "lon",
+              "altitude": "alt_ft",
+              "timestamp": "timestamp"
+            },
+            "isVisible": true,
+            "visConfig": {
+              "thickness": 1.5,
+              "sizeRange": [
+                0,
+                10
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "mapState": {
+      "latitude": 40.36008338797814,
+      "longitude": -109.33190936065573,
+      "zoom": 9,
+      "pitch": 45
+    },
+    "mapStyle": {
+      "styleType": "dark"
+    }
+  }
+}

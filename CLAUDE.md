@@ -54,11 +54,14 @@ pip install -e .                  # first run only
 
 ## Common tasks
 
-- Run all viz: `python scripts/run_all.py 3f99ca78`
+- Run all viz (analysis): `python scripts/run_all.py 3f99ca78`
+- Run all viz (committed reference): `python scripts/run_all.py 3f99ca78 --example --out-dir examples/3f99ca78`
 - Tests: `pytest -q`
 - New flight: drop `<id>.{csv,kml}` into `test_examples/fr24/`, transcribe screenshots into `metadata/extra-metadata-<image-stem>.md`, add `metadata/flight-<id>.md`, then `python scripts/run_all.py <id>`.
 - Implement FlightAware parser: see `test_examples/flightaware/SCHEMA.md`.
 
 ## Outputs
 
-`outputs/` (gitignored): `static_<id>.png`, `interactive_<id>.html`, `kepler_<id>/{track.csv,config.json,README.md}`, `art_topo_<id>.png`.
+- `outputs/` (gitignored): scratch dir for analysis runs.
+- `examples/3f99ca78/` (committed): reference renders of the demo flight, watermarked `EXAMPLE OUTPUT` via `--example`. Used in README. Regenerate with the `--example` invocation above.
+- Per output: `static_<id>.png`, `interactive_<id>.html`, `kepler_<id>/{track.csv,config.json,README.md}`, `art_topo_<id>.png`.

@@ -9,6 +9,7 @@ import numpy as np
 from matplotlib.collections import LineCollection
 
 from flight_maps.canonical import FlightTrack
+from flight_maps.viz._watermark import stamp_example
 
 
 def _bounds(lats: list[float], lons: list[float], pad: float = 0.05) -> tuple:
@@ -24,7 +25,7 @@ def _bounds(lats: list[float], lons: list[float], pad: float = 0.05) -> tuple:
     )
 
 
-def render(track: FlightTrack, out_path: str | Path, *, dpi: int = 300) -> Path:
+def render(track: FlightTrack, out_path: str | Path, *, dpi: int = 300, is_example: bool = False) -> Path:
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -77,6 +78,8 @@ def render(track: FlightTrack, out_path: str | Path, *, dpi: int = 300) -> Path:
         f"({track.depart_utc.date().isoformat() if track.depart_utc else ''})",
         fontsize=12,
     )
+    if is_example:
+        stamp_example(fig)
     fig.savefig(out_path, dpi=dpi, bbox_inches="tight")
     plt.close(fig)
     return out_path
